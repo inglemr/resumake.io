@@ -32,7 +32,8 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "all-contributors-cli": "^4.10.1"
+    "all-contributors-cli": "^4.10.1",
+    "enzyme": "^3.11.0"
   },
   "dependencies": {
     "opencollective": "^1.0.3"

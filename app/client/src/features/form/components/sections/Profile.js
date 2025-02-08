@@ -74,7 +74,7 @@ function Profile({
         label="Link"
         placeholder="mycoolportfolio.com/myname"
       />
-      {selectedTemplate === 10 && (
+      {(selectedTemplate === 10 || selectedTemplate === 2 ) && (
         <React.Fragment>
           <Label>Summaries</Label>
           {summaries.map((summary, i) => (

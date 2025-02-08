@@ -16,7 +16,7 @@ const generator: Template2Generator = {
       return ''
     }
 
-    const { name, email, phone, location = {}, website } = basics
+    const { name, email, phone, location = {}, website, summaries } = basics
 
     let nameLine = ''
 
@@ -45,6 +45,25 @@ const generator: Template2Generator = {
       .filter(Boolean)
       .join(' | ')
 
+    let summarySection = ''
+    if (summaries) {
+      const lastSummaryIndex = summaries.length - 1
+      summarySection = source`
+          %%% Summary
+          %%% ------------------------------------------------------------
+    
+          \\cvsection{${'Summary'}}
+
+          ${summaries.map((summary, i) => {
+            return stripIndent`
+              {${summary || '' }}
+            ${i < lastSummaryIndex ? '\\sepspace' : ''}
+          `
+          })}
+        `
+    }
+
+
     return stripIndent`
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       %     Profile
@@ -54,6 +73,8 @@ const generator: Template2Generator = {
       \\vspace{2mm}
       ${info}
       \\end{center}
+
+      ${summarySection || ''}
     `
   },
 
